@@ -7,6 +7,9 @@ const createFoodValidationSchema = z.object({
     })
     .min(5)
     .max(100),
+  img: z.string({
+    required_error: 'Please provide image for the food',
+  }),
   category: z.string({
     required_error: 'Please provide category for the food',
   }),
@@ -18,6 +21,13 @@ const createFoodValidationSchema = z.object({
   }),
 })
 
+const createFoodCategoryValidationSchema = z.object({
+  category: z.string({
+    required_error: 'Please provide category for the food',
+  }),
+})
+
 export const FoodValidation = {
   createFoodValidationSchema,
+  createFoodCategoryValidationSchema,
 }

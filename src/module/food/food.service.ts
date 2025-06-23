@@ -1,5 +1,5 @@
 import { IFood } from './food.interface'
-import Food from './food.model'
+import Food, { FoodCategory } from './food.model'
 
 const getFoods = async (category?: string) => {
   const filter: { category?: string } = {}
@@ -15,7 +15,21 @@ const addFood = async (payload: IFood) => {
   return result
 }
 
+const addFoodCategory = async (payload: { category: string }) => {
+  // Check for duplicate (case-insensitive)
+  const existing = await FoodCategory.findOne({
+    category: { $regex: new RegExp(`^${payload.category}$`, 'i') },
+  })
+
+  if (existing) {
+    throw new Error('This category already exists')
+  }
+  const result = await FoodCategory.create(payload)
+  return result
+}
+
 export const FoodServices = {
-  addFood,
   getFoods,
+  addFood,
+  addFoodCategory,
 }

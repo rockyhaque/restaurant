@@ -36,7 +36,19 @@ const addFood = catchAsync(async (req, res) => {
   })
 })
 
+const addFoodCategory = catchAsync(async (req, res) => {
+  const result = await FoodServices.addFoodCategory(req.body)
+
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.CREATED,
+    message: 'Food category added successfully',
+    data: result,
+  })
+})
+
 export const FoodControllers = {
   getFoods,
   addFood,
+  addFoodCategory
 }
