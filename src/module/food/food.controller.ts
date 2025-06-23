@@ -9,7 +9,7 @@ const addFood = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: StatusCodes.CREATED,
-    message: 'Food created successfully',
+    message: 'Food added successfully',
     data: result,
   })
 })
