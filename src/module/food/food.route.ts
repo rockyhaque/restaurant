@@ -5,6 +5,11 @@ import { FoodControllers } from './food.controller'
 
 const foodRouter = express.Router()
 
+foodRouter.get(
+  '/',
+  FoodControllers.getFoods
+)
+
 foodRouter.post(
   '/add-food',
   validateRequest(FoodValidation.createFoodValidationSchema),
