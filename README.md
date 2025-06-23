@@ -27,11 +27,9 @@ Build a full-stack eCommerce web application using Next.js (frontend) and Node.j
 - Mongoose
 
 
-
-
 <br>
 
-> Live Link ➡️ https://food-server-gamma-tan.vercel.app
+> Base API ➡️ https://restaurant-two-gilt.vercel.app
 
 
 For inquiries, reach out to rockyhaque71@gmail.com
