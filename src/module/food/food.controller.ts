@@ -25,6 +25,26 @@ const getFoods = catchAsync(async (req, res) => {
   })
 })
 
+const getFoodCategories = catchAsync(async (req, res) => {
+  const result = await FoodServices.getFoodCategories()
+
+  if (!result || result.length === 0) {
+    return sendResponse(res, {
+      success: false,
+      statusCode: StatusCodes.NOT_FOUND,
+      message: 'No food category found',
+      data: [],
+    })
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.OK,
+    message: 'Food categories retrieved successfully',
+    data: result,
+  })
+})
+
 const addFood = catchAsync(async (req, res) => {
   const result = await FoodServices.addFood(req.body)
 
@@ -49,6 +69,7 @@ const addFoodCategory = catchAsync(async (req, res) => {
 
 export const FoodControllers = {
   getFoods,
+  getFoodCategories,
   addFood,
-  addFoodCategory
+  addFoodCategory,
 }

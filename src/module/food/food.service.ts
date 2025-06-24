@@ -10,13 +10,28 @@ const getFoods = async (category?: string) => {
   return result
 }
 
+const getFoodCategories = async () => {
+  const result = await FoodCategory.find()
+  return result
+}
+
 const addFood = async (payload: IFood) => {
+  // check the category exist or not
+
+  const existCategory = await FoodCategory.findOne({
+    category: payload.category,
+  })
+
+  if (!existCategory) {
+    throw new Error('This category has not been listed yet')
+  }
+
   const result = await Food.create({ ...payload })
   return result
 }
 
 const addFoodCategory = async (payload: { category: string }) => {
-  // Check for duplicate (case-insensitive)
+  // Check for duplicate
   const existing = await FoodCategory.findOne({
     category: { $regex: new RegExp(`^${payload.category}$`, 'i') },
   })
@@ -30,6 +45,7 @@ const addFoodCategory = async (payload: { category: string }) => {
 
 export const FoodServices = {
   getFoods,
+  getFoodCategories,
   addFood,
   addFoodCategory,
 }

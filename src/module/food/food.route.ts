@@ -6,6 +6,7 @@ import { FoodControllers } from './food.controller'
 const foodRouter = express.Router()
 
 foodRouter.get('/', FoodControllers.getFoods)
+foodRouter.get('/all-categories', FoodControllers.getFoodCategories)
 
 foodRouter.post(
   '/add-food',
